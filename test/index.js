@@ -6,32 +6,56 @@ var CssDataExtractor = require('..');
 describe('cssDataExtractor', function () {
 
     var validConfig;
+    var validPage;
 
     beforeEach(function () {
-        validConfig = {};
+        validConfig = {
+            title: 'h1'
+        };
+        validPage = {
+            $: function() {
+                return {text: function() {
+                    return 'hello';
+                }}
+            }
+        };
     });
 
     it('should create a data property in the page', function () {
-        var page = {};
         var spider = {};
         var next = sinon.spy();
         var cssDataExtractor = CssDataExtractor(validConfig);
-        cssDataExtractor(page, spider, next);
+        cssDataExtractor(validPage, spider, next);
         next.called.should.equal(true);
-        should.exist(page.data);
+        should.exist(validPage.data);
     });
 
     it('should not overwrite an already existing data property given a page with a data property', function () {
-        var page = {
-            data: {
-                success: true
-            }
-        };
+        validPage.data = {success: true};
         var spider = {};
         var next = sinon.spy();
         var cssDataExtractor = CssDataExtractor(validConfig);
-        cssDataExtractor(page, spider, next);
-        page.data.success.should.equal(true);
+        cssDataExtractor(validPage, spider, next);
+        validPage.data.success.should.equal(true);
+    });
+
+    it('should throw an error given a page with no $ property', function () {
+        validPage.data = {success: true};
+        var spider = {};
+        var next = sinon.spy();
+        var cssDataExtractor = CssDataExtractor(validConfig);
+        cssDataExtractor(validPage, spider, next);
+        validPage.data.success.should.equal(true);
+    });
+
+    it('should throw an error given a page with no $ property', function () {
+        validPage.data = {success: true};
+        var spider = {};
+        var next = sinon.spy();
+        var cssDataExtractor = CssDataExtractor(validConfig);
+        cssDataExtractor(validPage, spider, next);
+        validPage.data.success.should.equal(true);
+        validPage.data.title.should.equal('hello');
     });
 
 
