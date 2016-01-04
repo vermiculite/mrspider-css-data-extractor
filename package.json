@@ -4,7 +4,10 @@
   "description": "data extractor middleware for mrspider",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/_mocha --ui bdd --reporter spec --recursive ./test"
+    "test": "mocha --recursive",
+    "test-watch": "mocha --recursive --watch",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha --check-leaks test/ --recursive",
+    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
   },
   "keywords": [
     "mrspider",
@@ -15,6 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^3.4.1",
+    "istanbul": "^0.4.1",
     "mocha": "^2.3.4",
     "sinon": "^1.17.2"
   }
