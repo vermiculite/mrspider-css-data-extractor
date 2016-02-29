@@ -26,7 +26,7 @@ describe('cssDataExtractor', function () {
     it('should create a data property in the page', function () {
         var next = sinon.spy();
         var cssDataExtractor = CssDataExtractor(validConfig);
-        cssDataExtractor._transform(validPage, next);
+        cssDataExtractor._transform(validPage, 'utf8', next);
         next.called.should.equal(true);
         should.exist(validPage.data);
     });
@@ -35,7 +35,7 @@ describe('cssDataExtractor', function () {
         validPage.data = {success: true};
         var next = sinon.spy();
         var cssDataExtractor = CssDataExtractor(validConfig);
-        cssDataExtractor._transform(validPage, next);
+        cssDataExtractor._transform(validPage, 'utf8', next);
         validPage.data.success.should.equal(true);
     });
 
@@ -43,7 +43,7 @@ describe('cssDataExtractor', function () {
         validPage.data = {success: true};
         var next = sinon.spy();
         var cssDataExtractor = CssDataExtractor(validConfig);
-        cssDataExtractor._transform(validPage, next);
+        cssDataExtractor._transform(validPage, 'utf8', next);
         validPage.data.success.should.equal(true);
     });
 
@@ -51,7 +51,7 @@ describe('cssDataExtractor', function () {
         validPage.data = {success: true};
         var next = sinon.spy();
         var cssDataExtractor = CssDataExtractor(validConfig);
-        cssDataExtractor._transform(validPage, next);
+        cssDataExtractor._transform(validPage, 'utf8', next);
         validPage.data.success.should.equal(true);
         validPage.data.title.should.equal('hello');
     });
