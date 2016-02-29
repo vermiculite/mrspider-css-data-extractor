@@ -1,6 +1,6 @@
 {
   "name": "mrspider-css-data-extractor",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "data extractor middleware for mrspider",
   "main": "index.js",
   "scripts": {
