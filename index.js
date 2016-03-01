@@ -10,6 +10,7 @@ module.exports = function (options) {
         Object.keys(options).forEach(function(key) {
             page.data [key] = page.$(options[key]).text();
         });
+        this.push(page);
         next();
     });
 };
